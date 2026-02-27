@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uzbekneftgaz</title>
+  <style>
+    
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:Arial,sans-serif; background:#f4f6fa; color:#1a2535; }
+    header { background:#0a1628; padding:0 32px; height:60px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { color:#fff; font-size:18px; font-weight:700; }
+    nav a { color:rgba(255,255,255,.7); text-decoration:none; margin-left:16px; font-size:14px; }
+    nav a:hover { color:#fff; }
+    .hero { background:linear-gradient(135deg,#0a1628,#0d3b6e); padding:50px 32px; text-align:center; color:#fff; }
+    .hero-tag { background:rgba(232,149,42,.2); border:1px solid #e8952a; color:#e8952a; font-size:12px; padding:4px 14px; border-radius:20px; letter-spacing:2px; }
+    .hero h1 { font-size:26px; margin:16px 0 10px; line-height:1.4; }
+    .hero p { color:rgba(255,255,255,.65); font-size:15px; margin-bottom:20px; }
+    .btn { background:#e8952a; color:#fff; padding:11px 26px; border-radius:7px; text-decoration:none; font-weight:600; cursor:pointer; border:none; font-size:15px; }
+    .stats { background:#fff; display:flex; justify-content:space-around; padding:20px 32px; border-bottom:1px solid #e0e8f0; }
+    .stat-num { font-size:26px; font-weight:700; color:#0d3b6e; text-align:center; }
+    .stat-label { font-size:11px; color:#5a6a7e; text-transform:uppercase; letter-spacing:1px; text-align:center; }
+    .news { padding:40px 32px; }
+    .news h2 { font-size:22px; color:#0a1628; margin-bottom:20px; }
+    .news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.07); cursor:pointer; transition:transform .2s; }
+    .card:hover { transform:translateY(-4px); }
+    .card-img { height:120px; background:#0a1628; display:flex; align-items:center; justify-content:center; font-size:36px; }
+    .card-body { padding:14px; }
+    .card-date { font-size:12px; color:#5a6a7e; margin-bottom:6px; }
+    .card-body h3 { font-size:14px; color:#0a1628; margin-bottom:8px; line-height:1.4; }
+    .card-body a { font-size:13px; color:#e8952a; text-decoration:none; font-weight:600; }
+    .oav { background:#0a1628; padding:40px 32px; }
+    .oav h2 { font-size:22px; color:#fff; margin-bottom:20px; }
+    .oav-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .oav-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:10px; display:flex; overflow:hidden; }
+    .oav-icon { width:100px; background:#0d3b6e; display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0; }
+    .oav-body { padding:14px; }
+    .oav-source { font-size:11px; color:#e8952a; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+    .oav-body h3 { font-size:14px; color:#fff; line-height:1.4; margin-bottom:6px; }
+    .oav-body p { font-size:12px; color:rgba(255,255,255,.5); }
+    footer { background:#060f1c; padding:24px 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .foot-logo { color:#fff; font-weight:700; }
+    footer a { color:rgba(255,255,255,.4); text-decoration:none; margin-left:16px; font-size:13px; }
+    footer a:hover { color:#e8952a; }
+    .copy { font-size:13px; color:rgba(255,255,255,.3); }
+    #toast { position:fixed; bottom:24px; right:24px; background:#e8952a; color:#fff; padding:12px 20px; border-radius:8px; font-size:14px; display:none; box-shadow:0 4px 16px rgba(0,0,0,.2); z-index:999; }
+    #counter { font-size:13px; color:rgba(255,255,255,.6); margin-top:10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">💧 Uzbekneftgaz</div>
+    <nav>
+      <a href="#">Бет саҳифаси</a>
+      <a href="#">Корпоративқа</a>
+      <a href="#">Ёшлар сиёсат</a>
+      <a href="#">Хотин-қизлар</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <span class="hero-tag">🔔 SO'NGGI YANGILIK</span>
+    <h1>Ёшлар учун коммуникацияга оид тадбирлар ташкил этилди</h1>
+    <p>Юртимиз ёшлари билан самарали мулоқот йўлида muhim qadamlar qo'yildi.</p>
+    <button class="btn" id="heroBtn">Батафсил ўқинг →</button>
+    <div id="counter"></div>
+  </div>
+
+  <div class="stats" id="statsBar"></div>
+
+  <section class="news">
+    <h2>Сонги Янгиликлар</h2>
+    <div class="news-grid" id="newsGrid"></div>
+  </section>
+
+  <section class="oav">
+    <h2>OAV Nigohi</h2>
+    <div class="oav-grid" id="oavGrid"></div>
+  </section>
+
+  <footer>
+    <div class="foot-logo">💧 Uzbekneftgaz</div>
+    <div>
+      <a href="#">Biz haqimizda</a>
+      <a href="#">Yangiliklar</a>
+      <a href="#">Aloqa</a>
+    </div>
+    <div class="copy">© 2026 Uzbekneftgaz</div>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="script..js"></script>
+</body>
+</html>
